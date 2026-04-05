@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "api/votes.py": {
+      "runtime": "python3.9"
+    }
+  }
+}
