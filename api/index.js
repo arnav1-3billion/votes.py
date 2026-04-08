@@ -17,7 +17,7 @@ export default async function handler(req, res) {
         res.setHeader("Content-Type", "text/csv");
         res.status(200).send(
             `timestamp,up_votes,down_votes,total_votes,like_ratio,next_milestone,votes_needed,milestone_progress\n` +
-            `${timestamp},${up},${down},${total},${like_ratio}%,${next_milestone},${needed},${progress}%`
+            `${timestamp},${up},${down},${total},${like_ratio},${next_milestone},${needed},${progress}`
         );
     } else {
         res.status(200).json({
