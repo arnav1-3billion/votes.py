@@ -24,10 +24,10 @@ export default async function handler(req, res) {
             up_votes: up,
             down_votes: down,
             total_votes: total,
-            like_ratio: like_ratio + "%",
+            like_ratio: like_ratio,
             next_milestone: next_milestone,
             votes_needed: needed,
-            milestone_progress: progress + "%"
+            milestone_progress: progress
         });
     }
 }
