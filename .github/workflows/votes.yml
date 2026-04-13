@@ -11,6 +11,15 @@ jobs:
       - uses: actions/checkout@v3
       - name: Run tracker
         run: python votes.py
+      - name: Send Discord webhook
+        run: |
+          UP=$(python3 -c "import json; d=json.load(open('votes.json')); print(d[-1]['up_votes'])")
+          DOWN=$(python3 -c "import json; d=json.load(open('votes.json')); print(d[-1]['down_votes'])")
+          NEEDED=$(python3 -c "import json; d=json.load(open('votes.json')); print(d[-1]['votes_needed'])")
+          MILESTONE=$(python3 -c "import json; d=json.load(open('votes.json')); print(d[-1]['next_milestone'])")
+          curl -X POST ${{ secrets.DISCORD_WEBHOOK }} \
+            -H "Content-Type: application/json" \
+            -d "{\"content\": \"📊 **Roblox Vote Update**\n👍 Up Votes: $UP\n👎 Down Votes: $DOWN\n🎯 Next Milestone: $MILESTONE\n⬆️ Votes Needed: $NEEDED\"}"
       - name: Commit results
         run: |
           git config user.name "github-actions"
